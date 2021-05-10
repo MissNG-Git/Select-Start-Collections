@@ -49,6 +49,9 @@ app.use(
   })
 );
 app.use(cookieParser("secretcode"));
+app.use(passport.initialize());
+app.use(passport.session());
+require("./config/passport")(passport);
 //----------------------------------------- END OF MIDDLEWARE ---------------------------------------------------
 
 // Routes
