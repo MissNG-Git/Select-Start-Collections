@@ -49,7 +49,6 @@ app.use(
   })
 );
 app.use(cookieParser("secretcode"));
-
 //----------------------------------------- END OF MIDDLEWARE ---------------------------------------------------
 
 // Routes
@@ -62,13 +61,15 @@ app.post("/register", (req, res) => {
     if (err) throw err;
     if (doc) res.send("User already exists!");
     if (!doc) {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
       const newUser = new User({
         email: req.body.email,
         username: req.body.username,
-        password: req.body.password,
+        password: hashedPassword,
       });
       await newUser.save();
-      res.send("User created!");
+      res.send(`${username} created an account!`);
     }
   });
 });
