@@ -8,6 +8,8 @@ function App() {
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  // Take server data & save in state
+  const [data, setData] = useState("");
 
   const register = () => {
     axios({
@@ -38,8 +40,11 @@ function App() {
     axios({
       method: "GET",
       withCredentials: true,
-      url: "http://localhost:3001/getUser",
-    }).then((res) => console.log(res));
+      url: "http://localhost:3001/user",
+    }).then((res) => {
+      setData(res.data);
+      console.log(res.data);
+    });
   };
 
   return (
@@ -75,6 +80,7 @@ function App() {
       <div>
         <h1>Get User</h1>
         <button onClick={getUser}>Submit</button>
+        {data ? <h1>Welcome back {data.username}</h1> : null}
       </div>
     </div>
   );

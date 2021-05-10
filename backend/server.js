@@ -55,8 +55,18 @@ require("./config/passport")(passport);
 //----------------------------------------- END OF MIDDLEWARE ---------------------------------------------------
 
 // Routes
-app.post("/login", (req, res) => {
-  console.log(req.body);
+app.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) throw err;
+    if (!user) res.send("User doesn't exist!");
+    else {
+      req.logIn(user, (err) => {
+        if (err) throw err;
+        res.send("Successfully authenticated!");
+        console.log(req.user);
+      });
+    }
+  })(req, res, next);
 });
 
 app.post("/register", (req, res) => {
@@ -72,13 +82,14 @@ app.post("/register", (req, res) => {
         password: hashedPassword,
       });
       await newUser.save();
-      res.send(`${username} created an account!`);
+      res.send("Account created!");
     }
   });
 });
 
 app.get("/user", (req, res) => {
-  console.log(req.body);
+  // Return authenticated user within req.user
+  res.send(req.user);
 });
 //----------------------------------------- END OF ROUTES---------------------------------------------------
 

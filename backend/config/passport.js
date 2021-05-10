@@ -39,7 +39,12 @@ module.exports = function (passport) {
   passport.deserializeUser((id, cb) => {
     // Find user with _id that matches cookie id
     User.findOne({ _id: id }, (err, user) => {
-      cb(err, user);
+      // Store username in DB
+      // Restrict data obj that gets sent back
+      const userInformation = {
+        username: user.username,
+      };
+      cb(err, userInformation);
     });
   });
 };
