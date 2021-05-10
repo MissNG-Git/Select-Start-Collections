@@ -58,7 +58,19 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  console.log(req.body);
+  User.findOne({ username: req.body.username }, async (err, doc) => {
+    if (err) throw err;
+    if (doc) res.send("User already exists!");
+    if (!doc) {
+      const newUser = new User({
+        email: req.body.email,
+        username: req.body.username,
+        password: req.body.password,
+      });
+      await newUser.save();
+      res.send("User created!");
+    }
+  });
 });
 
 app.get("/user", (req, res) => {
@@ -67,6 +79,6 @@ app.get("/user", (req, res) => {
 //----------------------------------------- END OF ROUTES---------------------------------------------------
 
 // Start Server
-app.listen(3001, () => {
-  console.log("Server started on http://localhost:3001");
+app.listen(PORT, () => {
+  console.log(`Server listening on: http://localhost:${PORT}!`);
 });

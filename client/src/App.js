@@ -3,6 +3,7 @@ import "./App.css";
 import axios from "axios";
 
 function App() {
+  const [registerEmail, setRegisterEmail] = useState("");
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginUsername, setLoginUsername] = useState("");
@@ -12,6 +13,7 @@ function App() {
     axios({
       method: "POST",
       data: {
+        email: registerEmail,
         username: registerUsername,
         password: registerPassword,
       },
@@ -44,6 +46,10 @@ function App() {
     <div className="App">
       <div>
         <h1>Register</h1>
+        <input
+          placeholder="email"
+          onChange={(e) => setRegisterEmail(e.target.value)}
+        />
         <input
           placeholder="username"
           onChange={(e) => setRegisterUsername(e.target.value)}
