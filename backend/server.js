@@ -9,9 +9,30 @@ const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const app = express();
+const PORT = process.env.PORT || 3001;
 //----------------------------------------- END OF IMPORTS ---------------------------------------------------
 
+const User = require("./models/user");
+
+// Mongo Atlas DB
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/select-start-collections",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  },
+  () => {
+    console.log("Mongoose Connected!");
+  }
+);
+
 // Middleware
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
