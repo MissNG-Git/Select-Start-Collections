@@ -1,17 +1,19 @@
 // Import Packages
 const mongoose = require("mongoose");
 const express = require("express");
-const cors = require("cors");
 const passport = require("passport");
-const passportLocal = require("passport-local").Strategy;
-const cookieParser = require("cookie-parser");
-const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// * MOVE??
+const cookieParser = require("cookie-parser");
+const bcrypt = require("bcryptjs");
+const cors = require("cors");
 //----------------------------------------- END OF IMPORTS ---------------------------------------------------
 
+// * MOVE??
 const User = require("./models/user");
 
 // Mongo Atlas DB
@@ -43,6 +45,7 @@ app.use(
 );
 app.use(
   session({
+    // TODO: Parse in secret from .env ??
     secret: "secretcode",
     resave: true,
     saveUninitialized: true,
@@ -95,5 +98,5 @@ app.get("/user", (req, res) => {
 
 // Start Server
 app.listen(PORT, () => {
-  console.log(`Server listening on: http://localhost:${PORT}!`);
+  console.log(`Back-end server listening on: http://localhost:${PORT}!`);
 });
