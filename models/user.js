@@ -36,6 +36,7 @@ userSchema.pre("save", function (next) {
 // Compare plaintext w/hashedPassword
 userSchema.methods.comparePassword = function (password, cb) {
   bcrypt.compare(password, this.password, (err, isMatch) => {
+    // Error w/comparing pw
     if (err) return cb(err);
     else {
       // if password provided does not match pw in DB
