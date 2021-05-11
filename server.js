@@ -33,6 +33,19 @@ mongoose.connect(
   }
 );
 
+const User = require("./models/user");
+
+const userInput = {
+  username: "test",
+  password: "123456789",
+};
+
+const user = new User(userInput);
+user.save((err, doc) => {
+  if (err) console.log(err);
+  console.log(doc);
+});
+
 // Start Server
 app.listen(PORT, () => {
   console.log(`Back-end server listening on: http://localhost:${PORT}!`);
