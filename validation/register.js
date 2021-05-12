@@ -1,11 +1,48 @@
 // Import validator, is-empty & other dependencies
+const Validator = require("validator");
+const isEmpty = require("is-empty");
 
 // Export validateRegisterInput(), which takes in front-end registration form data as parameter
+module.exports = function validateRegisterInput(data) {
+  // Instantiate errors object
+  let errors = {};
 
-// Instantiate errors object
+  // Convert all empty fields to an empty string before running validation checks (validator only works with strings)
+  data.username = !isEmpty(data.username) ? data.username : "";
+  data.email = !isEmpty(data.email) ? data.email : "";
+  data.password = !isEmpty(data.password) ? data.password : "";
+  data.password2 = !isEmpty(data.password2) ? data.password2 : "";
 
-// Convert all empty fields to an empty string before running validation checks (validator only works with strings)
+  // Check for empty fields, valid email formats & password requirements using validator functions
+  // Email checks
+  if (Validator.isEmpty(data.email)) {
+    errors.email = "Email field is required";
+  } else if (!Validator.isEmail(data.email)) {
+    errors.email = "Email is invalid";
+  }
 
-// Check for empty fields, valid email formats & password requirements using validator functions
+  // Username checks
+  if (Validator.isEmpty(data.username)) {
+    errors.username = "Username field is required";
+  }
 
-// Return errors object with errors contained; also isValid boolean that checks if errors exist
+  // Password checks
+  if (Validator.isEmpty(data.password)) {
+    errors.password = "Password field is required";
+  }
+  if (Validator.isEmpty(data.password2)) {
+    errors.password2 = "Confirm password field is required";
+  }
+  if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
+    errors.password = "Password must be at least 6 characters";
+  }
+  if (!Validator.equals(data.password, data.password2)) {
+    errors.password2 = "Passwords must match";
+  }
+
+  // Return errors object with errors contained; also isValid boolean that checks if errors exist
+  return {
+    errors,
+    isValid: isEmpty(errors),
+  };
+};
