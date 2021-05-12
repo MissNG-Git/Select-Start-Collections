@@ -1,10 +1,9 @@
 {
-  "name": "select-start",
+  "name": "select-start-collections",
   "version": "1.0.0",
-  "description": "",
+  "description": "A gamer's dream application for managing their gaming collection and sharing game creations.",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
@@ -25,14 +24,15 @@
   },
   "homepage": "https://github.com/MissNG-Git/Select-Start-Collections#readme",
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "cookie-parser": "^1.4.5",
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^6.1.0",
     "express": "^4.17.1",
+    "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.8",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0"
+    "validator": "^13.6.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

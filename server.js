@@ -1,52 +1,27 @@
-// Import Packages
-const mongoose = require("mongoose");
 const express = require("express");
-const cookieParser = require("cookie-parser");
+const mongoose = require("mongoose");
+const passport = require("passport");
 const app = express();
-const PORT = process.env.PORT || 3001;
-
-//----------------------------------------- END OF IMPORTS ---------------------------------------------------
-
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-} else {
-  app.use(express.static("../client/public"));
-}
+const port = process.env.PORT || 8000;
+// !Users API Route -- Require & Use
 
 // Middleware
-app.use(express.json({ extended: true }));
-app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-//----------------------------------------- END OF MIDDLEWARE ---------------------------------------------------
+// Passport middleware
+app.use(passport.initialize());
+// !Passport config
 
-// Mongo Atlas DB
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/select-start-collections",
-  {
+// Connect to MongoDB
+mongoose
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/select-start", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-  },
-  () => {
-    console.log("Mongoose Connected!");
-  }
-);
+    useFindAndModify: false,
+  })
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch((err) => console.log(err));
 
-const User = require("./models/user");
-
-const userInput = {
-  username: "test",
-  password: "123456789",
-};
-
-const user = new User(userInput);
-user.save((err, doc) => {
-  if (err) console.log(err);
-  console.log(doc);
-});
-
-// Start Server
-app.listen(PORT, () => {
-  console.log(`Back-end server listening on: http://localhost:${PORT}!`);
-});
+app.listen(port, () => console.log(`Server running on Port ${port}!`));
