@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const app = express();
 const port = process.env.PORT || 8000;
-// !Users API Route -- Require & Use
+const users = require("./routes/api/users");
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -11,7 +11,11 @@ app.use(express.json());
 
 // Passport middleware
 app.use(passport.initialize());
-// !Passport config
+// Passport config
+require("./config/passport")(passport);
+
+// Routes
+app.use("/api/users", users);
 
 // Connect to MongoDB
 mongoose
