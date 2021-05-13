@@ -4,9 +4,13 @@
 
 // Use axios to make HTTPRequests within certain action
 // Register User
+// Redirect on register??
 
 // Login & get user token
 // Set token to localStorage
+// Set token to authHeader
+// Decode token for user data
+// Set currentUser
 
 // Set logged in user
 
