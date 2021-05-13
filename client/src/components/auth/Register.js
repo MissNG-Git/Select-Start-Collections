@@ -1,5 +1,9 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
+// import classnames from "classnames";
 
 function Register() {
   // CONSTRUCTOR
@@ -7,7 +11,28 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [errors] = useState({});
+  const [errors, setErrors] = useState({});
+
+  // componentDidMount() {
+  // If logged in and user navigates to Register page, should redirect them to dashboard
+  //   if (this.props.auth.isAuthenticated) {
+  //     this.props.history.push("/dashboard");
+  //   }
+  // }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.errors) {
+  //     this.setState({
+  //       errors: nextProps.errors
+  //     });
+  //   }
+  // }
+
+  useEffect(() => {
+    if (errors) {
+      setErrors(errors);
+    }
+  }, [errors]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +42,10 @@ function Register() {
       password: password,
       password2: password2,
     };
+
     console.log(newUser);
+    // Access prop
+    // this.props.registerUser(newUser, this.props.history);
   };
 
   // const { errors } = setErrors({});
@@ -45,8 +73,12 @@ function Register() {
                 error={errors.username}
                 id="username"
                 type="text"
+                // className={classnames("", {
+                //   invalid: errors.name
+                // })}
               />
               <label htmlFor="username">Username</label>
+              {/* <span className="red-text">{errors.name}</span> */}
             </div>
             <div className="input-field col s12">
               <input
@@ -55,8 +87,12 @@ function Register() {
                 error={errors.email}
                 id="email"
                 type="email"
+                // className={classnames("", {
+                //   invalid: errors.email
+                // })}
               />
               <label htmlFor="email">Email</label>
+              {/* <span className="red-text">{errors.email}</span> */}
             </div>
             <div className="input-field col s12">
               <input
@@ -65,8 +101,12 @@ function Register() {
                 error={errors.password}
                 id="password"
                 type="password"
+                // className={classnames("", {
+                //   invalid: errors.password
+                // })}
               />
               <label htmlFor="password">Password</label>
+              {/* <span className="red-text">{errors.password}</span> */}
             </div>
             <div className="input-field col s12">
               <input
@@ -75,8 +115,12 @@ function Register() {
                 error={errors.password2}
                 id="password2"
                 type="password"
+                // className={classnames("", {
+                //   invalid: errors.password2
+                // })}
               />
               <label htmlFor="password2">Confirm Password</label>
+              {/* <span className="red-text">{errors.password2}</span> */}
             </div>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <button
@@ -98,4 +142,20 @@ function Register() {
     </div>
   );
 }
-export default Register;
+
+// Define PropType Validators
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+};
+
+// Use mapStateToProps to get state from Redux and map to props so we can use in components
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+});
+
+// Utilise redux connect() to link w/component & display form errors
+// Use withRouter to redirect within action
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));
