@@ -1,11 +1,28 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+// import PropTypes from "prop-types";
+// import { connect } from "react-redux";
+// import { loginUser } from "../../actions/authActions";
+// import classnames from "classnames";
 
-function Login() {
+function Login({ auth }) {
   // CONSTRUCTOR
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors] = useState({});
+
+  // useEffect(() => {
+  //   If logged in and user navigates to Register page, should redirect them to dashboard
+  //   if (auth.isAuthenticated.errors) {
+  //     auth.history.push("/dashboard");
+  //   }
+  // });
+
+  // useEffect(() => {
+  //   if (errors) {
+  //     setErrors(errors);
+  //   }
+  // }, [errors]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -41,8 +58,15 @@ function Login() {
                 error={errors.email}
                 id="email"
                 type="email"
+                // className={classnames("", {
+                //   invalid: errors.email || errors.emailNotFound,
+                // })}
               />
               <label htmlFor="email">Email</label>
+              {/* <span className="red-text">
+                  {errors.email}
+                  {errors.emailNotFound}
+                </span> */}
             </div>
             <div className="input-field col s12">
               <input
@@ -51,8 +75,15 @@ function Login() {
                 error={errors.password}
                 id="password"
                 type="password"
+                // className={classnames("", {
+                //   invalid: errors.password || errors.passwordIncorrect,
+                // })}
               />
               <label htmlFor="password">Password</label>
+              {/* <span className="red-text">
+                  {errors.password}
+                  {errors.passwordIncorrect}
+                </span> */}
             </div>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <button
@@ -75,3 +106,9 @@ function Login() {
   );
 }
 export default Login;
+
+// Define PropType Validators
+
+// Use mapStateToProps to get state from Redux and map to props so we can use in components
+
+// Utilise redux connect() to link w/component & display form errors
