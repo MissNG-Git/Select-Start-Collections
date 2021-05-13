@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import Charts from "../charts/Charts";
 
 function Dashboard(props) {
   console.log(props);
@@ -13,19 +14,20 @@ function Dashboard(props) {
   };
 
   return (
-    <div style={{ height: "75vh" }} className="container valign-wrapper">
+    <div style={{ height: "75vh" }} className="container">
       <div className="row">
         <div className="landing-copy col s12 center-align">
           <h4>
             <b>Welcome to your Dashboard,</b> {user.username.split(" ")[0]}
             <p className="flow-text grey-text text-darken-1">
-              You are logged into a full-stack{" "}
+              You are logged into{" "}
               <span style={{ fontFamily: "monospace" }}>
                 Select-Start Collections
               </span>{" "}
               👏
             </p>
           </h4>
+
           <button
             style={{
               width: "150px",
@@ -38,6 +40,8 @@ function Dashboard(props) {
           >
             Logout
           </button>
+
+          <Charts />
         </div>
       </div>
     </div>
