@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import Charts from "../charts/Charts";
+import ssc from "../../ssc.svg";
 
 function Dashboard(props) {
   console.log(props);
@@ -15,6 +16,25 @@ function Dashboard(props) {
 
   return (
     <div style={{ height: "75vh" }} className="container">
+      <div>
+        <ul id="slide-out" className="sidenav sidenav-fixed">
+          <li className="logo">
+            {/* <a id="logo-container" href="/dashboard" className="brand-logo"> */}
+            <img src={ssc} className="App-logo" alt="logo" />
+            {/* </a> */}
+          </li>
+          <li>
+            <a href="/dashboard">Dashboard</a>
+          </li>
+          <li>
+            <a href="/collections">Collections</a>
+          </li>
+          <li>
+            <a href="/chat">Chat</a>
+          </li>
+        </ul>
+      </div>
+
       <div className="row">
         <div className="landing-copy col s12 center-align">
           <h4>
