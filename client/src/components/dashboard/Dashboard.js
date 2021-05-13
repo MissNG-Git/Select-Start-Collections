@@ -20,7 +20,10 @@ function Dashboard(props) {
             <b>Welcome to your Dashboard,</b> {user.username.split(" ")[0]}
             <p className="flow-text grey-text text-darken-1">
               You are logged into a full-stack{" "}
-              <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
+              <span style={{ fontFamily: "monospace" }}>
+                Select-Start Collections
+              </span>{" "}
+              👏
             </p>
           </h4>
           <button
