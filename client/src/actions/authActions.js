@@ -10,7 +10,8 @@
 // Set token to localStorage
 // Set token to authHeader
 // Decode token for user data
-// Set currentUser
+// Use dispatch to send action to reducer
+// Set currentUser w/token so isAuth returns true
 
 // Set logged in user
 
@@ -19,5 +20,5 @@
 // Log user out
 // Remove token from localStorage
 // Remove authHeader for future reqs
-// Use dispatch to send actions to our reducers
+// Use dispatch to send action to reducer
 // Set user to empty{} so isAuth returns false
