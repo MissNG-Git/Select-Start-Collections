@@ -17,17 +17,17 @@ function Register(props) {
   console.log(props);
 
   useEffect(() => {
-    // If logged in and user navigates to Register page, should redirect them to dashboard
+    // If isAuth = true, redirect to dashboard
     if (props.auth.isAuthenticated) {
       props.history.push("/dashboard");
     }
   });
 
   useEffect(() => {
-    if (errors) {
-      setErrors(errors);
+    if (props.error) {
+      setErrors(props.error);
     }
-  }, [errors]);
+  }, [props.error]);
 
   const onSubmit = (e) => {
     e.preventDefault();

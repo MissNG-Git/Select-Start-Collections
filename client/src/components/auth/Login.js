@@ -1,28 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import PropTypes from "prop-types";
-// import { connect, useDispatch } from "react-redux";
-// import { loginUser } from "../../actions/authActions";
+import PropTypes from "prop-types";
+import { connect, useDispatch } from "react-redux";
+import { loginUser } from "../../actions/authActions";
 // import classnames from "classnames";
 
-function Login({ auth }) {
+function Login(props) {
   // CONSTRUCTOR
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors] = useState({});
+  const [errors, setErrors] = useState({});
 
-  // useEffect(() => {
-  //   If logged in and user navigates to Register page, should redirect them to dashboard
-  //   if (auth.isAuthenticated.errors) {
-  //     auth.history.push("/dashboard");
-  //   }
-  // });
+  const dispatch = useDispatch();
+  console.log(props);
 
-  // useEffect(() => {
-  //   if (errors) {
-  //     setErrors(errors);
-  //   }
-  // }, [errors]);
+  useEffect(() => {
+    // If isAuth = true, redirect to dashboard
+    if (props.auth.isAuthenticated) {
+      props.history.push("/dashboard");
+    }
+  });
+
+  useEffect(() => {
+    if (props.error) {
+      setErrors(props.error);
+    }
+  }, [props.error]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -31,6 +34,7 @@ function Login({ auth }) {
       password: password,
     };
     console.log(userData);
+    dispatch(loginUser(userData));
   };
 
   // const { errors } = this.state;
@@ -105,10 +109,19 @@ function Login({ auth }) {
     </div>
   );
 }
-export default Login;
 
 // Define PropType Validators
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+};
 
 // Use mapStateToProps to get state from Redux and map to props so we can use in components
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors,
+});
 
 // Utilise redux connect() to link w/component & display form errors
+export default connect(mapStateToProps, { loginUser })(Login);
