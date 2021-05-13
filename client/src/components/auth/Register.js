@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 // import classnames from "classnames";
 
-function Register() {
+function Register(props) {
   // CONSTRUCTOR
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -13,20 +13,15 @@ function Register() {
   const [password2, setPassword2] = useState("");
   const [errors, setErrors] = useState({});
 
-  // componentDidMount() {
-  // If logged in and user navigates to Register page, should redirect them to dashboard
-  //   if (this.props.auth.isAuthenticated) {
-  //     this.props.history.push("/dashboard");
-  //   }
-  // }
+  const dispatch = useDispatch();
+  console.log(props);
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.errors) {
-  //     this.setState({
-  //       errors: nextProps.errors
-  //     });
-  //   }
-  // }
+  useEffect(() => {
+    // If logged in and user navigates to Register page, should redirect them to dashboard
+    if (props.auth.isAuthenticated) {
+      props.history.push("/dashboard");
+    }
+  });
 
   useEffect(() => {
     if (errors) {
@@ -43,12 +38,9 @@ function Register() {
       password2: password2,
     };
 
-    console.log(newUser);
-    // Access prop
-    // this.props.registerUser(newUser, this.props.history);
+    dispatch(registerUser(newUser, props.history));
   };
 
-  // const { errors } = setErrors({});
   return (
     <div className="container">
       <div className="row">
