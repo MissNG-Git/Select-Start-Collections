@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 
-function Dashboard({ auth }) {
-  const { user } = auth;
+function Dashboard(props) {
+  console.log(props);
+  const { user } = props.auth;
 
   const onLogoutClick = (e) => {
     e.preventDefault();
-    logoutUser();
+    props.logoutUser();
   };
 
   return (
@@ -16,7 +17,7 @@ function Dashboard({ auth }) {
       <div className="row">
         <div className="landing-copy col s12 center-align">
           <h4>
-            <b>Welcome to your Dashboard,</b> {user.name.split(" ")[0]}
+            <b>Welcome to your Dashboard,</b> {user.username.split(" ")[0]}
             <p className="flow-text grey-text text-darken-1">
               You are logged into a full-stack{" "}
               <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
