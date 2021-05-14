@@ -11,6 +11,8 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
+import Collection from "./components/collection/Collection";
+import Chat from "./components/chat/Chat";
 import "./App.css";
 
 // Check localStorage for token to keep user logged in even after browser close or page refresh
@@ -46,6 +48,8 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/collection" component={Collection} />
+            <PrivateRoute exact path="/chat" component={Chat} />
           </Switch>
         </div>
       </Router>

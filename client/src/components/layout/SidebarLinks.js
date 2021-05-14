@@ -11,8 +11,8 @@ export const SidebarLinks = [
     cName: "nav-text",
   },
   {
-    title: "Collections",
-    path: "/collections",
+    title: "Collection",
+    path: "/collection",
     icon: <IoIcons.IoIosPaper />,
     cName: "nav-text",
   },
