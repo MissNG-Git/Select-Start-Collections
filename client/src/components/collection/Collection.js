@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Sidebar from "../layout/Sidebar";
-import GameSearchResults from "../gameSearchResults/GameSearchResults";
+import GameSearchResLoggedIn from "../gameSearchResLoggedIn/GameSearchResLoggedIn";
 
 function Collection() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -41,7 +41,7 @@ function Collection() {
             <input type="text" value={searchTerm} onChange={handleChange} />{" "}
             <input type="submit" />
           </form>
-          <GameSearchResults gameSearchResults={gameSearchResults} />
+          <GameSearchResLoggedIn gameSearchResults={gameSearchResults} />
         </div>
       </div>
     </div>

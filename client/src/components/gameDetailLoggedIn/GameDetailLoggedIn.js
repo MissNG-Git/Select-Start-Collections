@@ -11,7 +11,10 @@ const GameDetailLoggedIn = (props) => {
       title: game.name,
       releaseDate: game.released,
       genre: game.genres || [],
-      platform: game.platforms || [],
+      platform: game.platforms.map(({ platform }) => {
+        const obj = { ...platform };
+        return obj;
+      }),
       // synopsis: ,
       // developer:,
       // publisher: ,

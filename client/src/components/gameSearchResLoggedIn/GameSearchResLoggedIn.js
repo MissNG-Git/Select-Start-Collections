@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const GameSearchResults = (props) => {
+const GameSearchResLoggedIn = (props) => {
   console.log(props);
   return (
     <div className="results-container">
@@ -10,7 +10,7 @@ const GameSearchResults = (props) => {
           <li key={game.id}>
             <Link
               to={{
-                pathname: `/browse/${game.name}`,
+                pathname: `/collection/${game.name}`,
                 gameProps: {
                   game: game,
                 },
@@ -26,4 +26,4 @@ const GameSearchResults = (props) => {
   );
 };
 
-export default GameSearchResults;
+export default GameSearchResLoggedIn;

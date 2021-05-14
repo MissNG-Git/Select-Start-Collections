@@ -10,7 +10,7 @@ import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Browse from "./components/browse/Browse";
-import GameDetail from "./components/GameDetail/GameDetail";
+import GameDetail from "./components/gameDetail/GameDetail";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import Collection from "./components/collection/Collection";
