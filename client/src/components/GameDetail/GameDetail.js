@@ -1,36 +1,62 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const GameDetail = (props) => {
   console.log(props);
   const { game } = props.location.gameProps;
 
   return (
-    <div>
-      <h1 className="game-title">{game.name}</h1>
-      <p className="game-meta">Released: {game.released}</p>
-      <p className="game-meta">MetaCritic: {game.metacritic}</p>
-      {/* <p className="game-meta">User Rating: {game.rating}</p> */}
-      <p className="game-meta">
-        Ratings:
-        {game.ratings.map((r) => `${r.title} ${r.percent}% | `)}
-      </p>
-      <h3 className="game-heading">Genre(s):</h3>
-      {game.genres.map((g) => `${g.name} | `)}
+    <div style={{ height: "75vh" }} className="container">
+      <div className="row">
+        <div className="col s12 center-align">
+          <div className="col s3">
+            <Link to="/browse" className="btn-flat waves-effect">
+              <i className="material-icons left">keyboard_backspace</i> Back to
+              browse
+            </Link>
+          </div>
+          <span className="col s6"></span>
+          <div className="col s3">
+            <p className="grey-text text-darken-1">
+              <Link to="/login">Log in</Link> <b>|</b>{" "}
+              <Link to="/register">Register</Link>
+            </p>
+          </div>
+        </div>
+      </div>
+      <br />
 
-      <h3 className="game-heading">Platform(s):</h3>
-      {game.platforms.map((p) => `${p.platform.name} | `)}
+      <div className="row">
+        <div className="col s12 center-align">
+          <div className="details-wrapper">
+            <h2 className="game-title">{game.name}</h2>
+            <p className="game-meta">Released: {game.released}</p>
+            <p className="game-meta">MetaCritic: {game.metacritic}</p>
+            {/* <p className="game-meta">User Rating: {game.rating}</p> */}
+            <p className="game-meta">
+              Ratings:
+              {game.ratings.map((r) => `${r.title} ${r.percent}% | `)}
+            </p>
+            <h4 className="game-heading">Genre(s):</h4>
+            {game.genres.map((g) => `${g.name} | `)}
 
-      <ul>
-        {game.short_screenshots.map((ss) => (
-          <li key={ss.id}>
-            <img
-              src={ss.image}
-              alt="game screenshot"
-              className="game-screenshot"
-            ></img>
-          </li>
-        ))}
-      </ul>
+            <h4 className="game-heading">Platform(s):</h4>
+            {game.platforms.map((p) => `${p.platform.name} | `)}
+
+            <ul className="game-details-ul">
+              {game.short_screenshots.map((ss) => (
+                <li key={ss.id} className="game-details-li">
+                  <img
+                    src={ss.image}
+                    alt="game screenshot"
+                    className="game-screenshot"
+                  ></img>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../layout/Sidebar";
 import GameSearchResLoggedIn from "../gameSearchResLoggedIn/GameSearchResLoggedIn";
 
-function Collection() {
+export default function Collection() {
   const [searchTerm, setSearchTerm] = useState("");
   const [gameSearchResults, setGameSearchResults] = useState([]);
   const gameSearchAPI = "https://rawg.io/api/games?search=";
@@ -31,21 +31,34 @@ function Collection() {
     <div>
       <Sidebar />
       <div style={{ height: "75vh" }} className="container">
-        <h1>Collection Page</h1>
+        <div className="row">
+          <div className="col s12 center-align">
+            <div className="database-wrapper">
+              <h2>Collection Page</h2>
+              <p className="flow-text grey-text text-darken-1">
+                Search for the game you'd like to add!
+              </p>
 
-        <div className="database-wrapper">
-          <h2>Browse Game Database</h2>
-          <p>Enter the name of a game to confirm it's in our database!</p>
+              <form onSubmit={onSubmit}>
+                <input type="text" value={searchTerm} onChange={handleChange} />{" "}
+                <input
+                  type="submit"
+                  style={{
+                    width: "140px",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px",
+                  }}
+                  className="btn btn-large waves-effect waves-light hoverable green darken-1"
+                />
+              </form>
 
-          <form onSubmit={onSubmit}>
-            <input type="text" value={searchTerm} onChange={handleChange} />{" "}
-            <input type="submit" />
-          </form>
-          <GameSearchResLoggedIn gameSearchResults={gameSearchResults} />
+              <div className="row">
+                <GameSearchResLoggedIn gameSearchResults={gameSearchResults} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-export default Collection;
