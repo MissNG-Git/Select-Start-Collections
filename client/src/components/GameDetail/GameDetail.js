@@ -50,6 +50,12 @@ const GameDetail = (props) => {
                     src={ss.image}
                     alt="game screenshot"
                     className="game-screenshot"
+                    style={{
+                      display: "inline-block",
+                      width: "25vh",
+                      height: "25vh",
+                      objectFit: "cover",
+                    }}
                   ></img>
                 </li>
               ))}

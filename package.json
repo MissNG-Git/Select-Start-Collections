@@ -24,9 +24,11 @@
   },
   "homepage": "https://github.com/MissNG-Git/Select-Start-Collections#readme",
   "dependencies": {
+    "@material-ui/icons": "^4.11.2",
     "bcryptjs": "^2.4.3",
     "chart.js": "^3.2.1",
     "concurrently": "^6.1.0",
+    "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",

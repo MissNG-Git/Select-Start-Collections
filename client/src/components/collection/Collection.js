@@ -34,13 +34,15 @@ export default function Collection() {
         <div className="row">
           <div className="col s12 center-align">
             <div className="database-wrapper">
-              <h2>Collection Page</h2>
-              <p className="flow-text grey-text text-darken-1">
-                Search for the game you'd like to add!
-              </p>
+              <h2>Manage Your Collection</h2>
 
               <form onSubmit={onSubmit}>
-                <input type="text" value={searchTerm} onChange={handleChange} />{" "}
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={handleChange}
+                  placeholder="Search for the game you'd like to add!"
+                />{" "}
                 <input
                   type="submit"
                   style={{
@@ -48,7 +50,7 @@ export default function Collection() {
                     borderRadius: "3px",
                     letterSpacing: "1.5px",
                   }}
-                  className="btn btn-large waves-effect waves-light hoverable green darken-1"
+                  className="btn btn-small waves-effect waves-light hoverable green lighten-1"
                 />
               </form>
 

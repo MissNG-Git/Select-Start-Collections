@@ -19,6 +19,10 @@ app.use(passport.initialize());
 // Passport Config
 require("./config/passport")(passport);
 
+// Routes
+app.use("/api/users", users);
+app.use("/api/games", games);
+
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/select-start", {
@@ -30,9 +34,7 @@ mongoose
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
 
-// Routes
-app.use("/api/users", users);
-app.use("/api/games", games);
+require("dotenv").config();
 
 // ! Socket.io testing
 // app.get("/", function (req, res) {

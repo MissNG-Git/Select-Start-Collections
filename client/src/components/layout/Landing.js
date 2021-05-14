@@ -29,7 +29,7 @@ function Landing() {
                 borderRadius: "3px",
                 letterSpacing: "1.5px",
               }}
-              className="btn btn-large waves-effect waves-light hoverable deep-purple darken-1"
+              className="btn btn-large waves-effect waves-light hoverable blue lighten-1"
             >
               Register
             </Link>
@@ -55,7 +55,7 @@ function Landing() {
                 borderRadius: "3px",
                 letterSpacing: "1.5px",
               }}
-              className="btn btn-large waves-effect waves-light hoverable amber darken-1"
+              className="btn btn-large waves-effect waves-light hoverable orange lighten-1"
             >
               Log In
             </Link>

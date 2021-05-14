@@ -65,7 +65,7 @@ export default function Database() {
                   borderRadius: "3px",
                   letterSpacing: "1.5px",
                 }}
-                className="btn btn-large waves-effect waves-light hoverable green darken-1"
+                className="btn btn-large waves-effect waves-light hoverable green lighten-1"
               />
             </form>
           </div>
