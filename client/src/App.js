@@ -9,9 +9,12 @@ import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import Browse from "./components/browse/Browse";
+import GameDetail from "./components/GameDetail/GameDetail";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import Collection from "./components/collection/Collection";
+import GameDetailLoggedIn from "./components/gameDetailLoggedIn/GameDetailLoggedIn";
 import ChatStore from "./components/chat/ChatStore";
 import Chat from "./components/chat/Chat";
 import "./App.css";
@@ -47,9 +50,15 @@ function App() {
           <Route exact path="/" component={Landing} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/browse" component={Browse} />
+          <Route path="/browse/:name" component={GameDetail} />
           <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/collection" component={Collection} />
+            <PrivateRoute
+              path="/collection/:name"
+              component={GameDetailLoggedIn}
+            />
             <ChatStore>
               <PrivateRoute exact path="/chat" component={Chat}></PrivateRoute>
             </ChatStore>

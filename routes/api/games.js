@@ -9,7 +9,7 @@ const Game = require("../../models/Game");
 router.get("/collection", (req, res) => {
   console.log("Collect GET!", req.body);
 
-  Game.findAll({ title: req.body.title })
+  Game.find({ title: req.body.title })
     .then((game) => {
       res.json(game);
     })
@@ -20,26 +20,31 @@ router.get("/collection", (req, res) => {
 router.post("/collection", (req, res) => {
   console.log("Collect POST!", req.body);
 
-  Game.findOne({
-    title: req.body.title,
-  })
+  Game.create(req.body)
     .then((game) => {
-      if (!game) {
-        return res.status(400).json({ email: "Game could not be found :(" });
-      } else {
-        const newGame = new Game({
-          title: req.body.title,
-          releaseDate: req.body.release,
-          genre: req.body.genre,
-          platform: req.body.platform,
-          synopsis: req.body.synopsis,
-          developer: req.body.developer,
-          publisher: req.body.publisher,
-          price: req.body.price,
-        });
-      }
+      res.json(game);
     })
     .catch((err) => res.status(422).json(err));
+  //   Game.findOne({
+  //     title: req.body.title,
+  //   })
+  //     .then((game) => {
+  //       if (!game) {
+  //         return res.status(400).json({ email: "Game could not be found :(" });
+  //       } else {
+  //         const newGame = new Game({
+  //           title: req.body.title,
+  //           releaseDate: req.body.release,
+  //           genre: req.body.genre,
+  //           platform: req.body.platform,
+  //           synopsis: req.body.synopsis,
+  //           developer: req.body.developer,
+  //           publisher: req.body.publisher,
+  //           price: req.body.price,
+  //         });
+  //       }
+  //     })
+  //     .catch((err) => res.status(422).json(err));
 });
 
 // Collection PUT(?) endpoint

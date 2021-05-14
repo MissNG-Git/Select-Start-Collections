@@ -5,6 +5,7 @@ const passport = require("passport");
 const app = express();
 const port = process.env.PORT || 8000;
 const users = require("./routes/api/users");
+const games = require("./routes/api/games");
 // ! Socket.io testing
 // const http = require("http").createServer(app);
 // const io = require("socket.io")(http);
@@ -18,9 +19,6 @@ app.use(passport.initialize());
 // Passport Config
 require("./config/passport")(passport);
 
-// Routes
-app.use("/api/users", users);
-
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/select-start", {
@@ -31,6 +29,10 @@ mongoose
   })
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
+
+// Routes
+app.use("/api/users", users);
+app.use("/api/games", games);
 
 // ! Socket.io testing
 // app.get("/", function (req, res) {

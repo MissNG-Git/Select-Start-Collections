@@ -19,7 +19,7 @@ function Landing() {
             community and make new friends 😊
           </p>
           <br />
-          <div className="col s6">
+          <div className="col s4">
             <Link
               to="/register"
               style={{
@@ -32,7 +32,20 @@ function Landing() {
               Register
             </Link>
           </div>
-          <div className="col s6">
+          <div className="col s4">
+            <Link
+              to="/browse"
+              style={{
+                width: "140px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+              }}
+              className="btn btn-large btn-flat waves-effect white black-text"
+            >
+              Browse
+            </Link>
+          </div>
+          <div className="col s4">
             <Link
               to="/login"
               style={{
@@ -40,7 +53,7 @@ function Landing() {
                 borderRadius: "3px",
                 letterSpacing: "1.5px",
               }}
-              className="btn btn-large btn-flat waves-effect white black-text"
+              className="btn btn-large waves-effect waves-light hoverable green accent-3"
             >
               Log In
             </Link>

@@ -16,6 +16,12 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  games: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Game",
+    },
+  ],
   date: {
     type: Date,
     default: Date.now,

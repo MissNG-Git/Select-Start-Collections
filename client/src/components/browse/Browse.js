@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Sidebar from "../layout/Sidebar";
+// import { Link } from "react-router-dom";
 import GameSearchResults from "../gameSearchResults/GameSearchResults";
 
-function Collection() {
+export default function Database() {
   const [searchTerm, setSearchTerm] = useState("");
   const [gameSearchResults, setGameSearchResults] = useState([]);
   const gameSearchAPI = "https://rawg.io/api/games?search=";
@@ -28,24 +28,15 @@ function Collection() {
   };
 
   return (
-    <div>
-      <Sidebar />
-      <div style={{ height: "75vh" }} className="container">
-        <h1>Collection Page</h1>
+    <div className="database-wrapper">
+      <h2>Browse Game Database</h2>
+      <p>Enter the name of a game to confirm it's in our database!</p>
 
-        <div className="database-wrapper">
-          <h2>Browse Game Database</h2>
-          <p>Enter the name of a game to confirm it's in our database!</p>
-
-          <form onSubmit={onSubmit}>
-            <input type="text" value={searchTerm} onChange={handleChange} />{" "}
-            <input type="submit" />
-          </form>
-          <GameSearchResults gameSearchResults={gameSearchResults} />
-        </div>
-      </div>
+      <form onSubmit={onSubmit}>
+        <input type="text" value={searchTerm} onChange={handleChange} />{" "}
+        <input type="submit" />
+      </form>
+      <GameSearchResults gameSearchResults={gameSearchResults} />
     </div>
   );
 }
-
-export default Collection;
