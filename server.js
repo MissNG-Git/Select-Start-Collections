@@ -1,17 +1,21 @@
+// Import Dependencies
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const app = express();
 const port = process.env.PORT || 8000;
 const users = require("./routes/api/users");
+// ! Socket.io testing
+// const http = require("http").createServer(app);
+// const io = require("socket.io")(http);
 
-// Middleware
+// Use Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Passport middleware
+// Passport Middleware
 app.use(passport.initialize());
-// Passport config
+// Passport Config
 require("./config/passport")(passport);
 
 // Routes
@@ -28,4 +32,18 @@ mongoose
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
 
+// ! Socket.io testing
+// app.get("/", function (req, res) {
+//   res.send("<h1>Hello world!</h1>");
+// });
+
+// io.on("connection", function (socket) {
+//   console.log("User connected!");
+// });
+
+// http.listen(3001, function () {
+//   console.log(`Server listening on: http://localhost:${PORT}!`);
+// });
+
+// Start backend server
 app.listen(port, () => console.log(`Server running on Port ${port}!`));

@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from "react";
+// import io from "socket.io-client";
 
 // Use Context Provider to hold current chats in state
 export const CTX = createContext();
@@ -23,13 +24,13 @@ function reducer(state, action) {
 
   switch (action.type) {
     case "RECEIVE_MESSAGE":
-      // retain existing state, while mapping over a received chat & re-rendering page
-      // retain all current messages & add new messages to topic array **see initState template**
+      // Retain existing state, while mapping over a received chat & re-rendering page
+      // Retain all current messages & add new messages to topic array **see initState template**
       return {
-        // "copy" existing state
+        // "Copy" existing state
         ...state,
-        // rewrite topic key
-        // another spread to copy existing msgs & retrieve new from & msg
+        // Rewrite topic key
+        // Another spread to copy existing msgs & retrieve new from & msg
         [topic]: [...state[topic], { from, msg }],
       };
     default:
@@ -37,10 +38,13 @@ function reducer(state, action) {
   }
 }
 
+// Keep socket outside of function to prevent re-rendering on reload
+// let socket;
+
 export default function ChatStore(props) {
-  // if no socket, set port
+  // If no socket, set port
   // if (!socket) {
-  //   socket = io("8080");
+  //   socket = io("8000");
   // }
 
   // useReducer to take in reducer fxn & initState
