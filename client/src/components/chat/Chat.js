@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Sidebar from "../layout/Sidebar";
-// import { CTX } from "./ChatStore.js";
+import { CTX } from "./ChatStore.js";
 // import TopicWindow from "../components/TopicWindow/TopicWindow";
 // import ChatWindow from "../components/ChatWindow/ChatWindow";
 import {
@@ -32,14 +32,14 @@ const useStyles = makeStyles((theme) => ({
 function Chat() {
   const classes = useStyles();
 
-  //   // CTX Store: get allChats & trigger reducer event
-  //   const [allChats] = useContext(CTX);
+  // CTX Store: get allChats & trigger reducer event
+  const [allChats] = useContext(CTX);
+  console.log(allChats);
+  // Get list of Objects
+  const topics = Object.keys(allChats);
 
-  //   // Get list of Objects
-  //   const topics = Object.keys(allChats);
-
-  //   // Local State
-  //   const [activeTopic, changeActiveTopic] = useState(topics[0]);
+  // Local State
+  const [activeTopic, changeActiveTopic] = useState(topics[0]);
   const [textValue, changeTextValue] = useState("");
 
   return (
@@ -52,16 +52,15 @@ function Chat() {
           </Typography>
 
           <Typography variant="h5" component="h5">
-            {/* {activeTopic} */} Topic Placeholder
+            {activeTopic}
           </Typography>
 
           <div className={classes.flex}>
             <div className={classes.topicWindow}>
               <List>
-                {/* {topics.map((topic) => ( */}
-                {["topic"].map((topic) => (
+                {topics.map((topic) => (
                   <ListItem
-                    // onClick={(e) => changeActiveTopic(e.target.innerText)}
+                    onClick={(e) => changeActiveTopic(e.target.innerText)}
                     key={topic}
                     button
                   >
@@ -72,8 +71,7 @@ function Chat() {
             </div>
 
             <div className={classes.chatWindow}>
-              {/* {allChats[activeTopic].map((chat, i) => ( */}
-              {[{ from: "user", msg: "hello" }].map((chat, i) => (
+              {allChats[activeTopic].map((chat, i) => (
                 <div className={classes.flex} key={i}>
                   <Chip label={chat.from} className={classes.chip} />
                   <Typography variant="inherit">{chat.msg}</Typography>

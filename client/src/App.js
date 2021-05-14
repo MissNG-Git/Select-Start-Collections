@@ -12,6 +12,7 @@ import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import Collection from "./components/collection/Collection";
+import ChatStore from "./components/chat/ChatStore";
 import Chat from "./components/chat/Chat";
 import "./App.css";
 
@@ -49,7 +50,9 @@ function App() {
           <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/collection" component={Collection} />
-            <PrivateRoute exact path="/chat" component={Chat} />
+            <ChatStore>
+              <PrivateRoute exact path="/chat" component={Chat}></PrivateRoute>
+            </ChatStore>
           </Switch>
         </div>
       </Router>
