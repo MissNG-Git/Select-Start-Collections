@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import Sidebar from "../layout/Sidebar";
 import Charts from "../charts/Charts";
-import ssc from "../../ssc.svg";
+// import ssc from "../../ssc.svg";
 
 function Dashboard(props) {
   console.log(props);
@@ -16,12 +17,13 @@ function Dashboard(props) {
 
   return (
     <div style={{ height: "75vh" }} className="container">
-      <div>
+      <Sidebar />
+      {/* <div>
         <ul id="slide-out" className="sidenav sidenav-fixed">
           <li className="logo">
-            {/* <a id="logo-container" href="/dashboard" className="brand-logo"> */}
+            <a id="logo-container" href="/dashboard" className="brand-logo">
             <img src={ssc} className="App-logo" alt="logo" />
-            {/* </a> */}
+            </a>
           </li>
           <li>
             <a href="/dashboard">Dashboard</a>
@@ -33,7 +35,7 @@ function Dashboard(props) {
             <a href="/chat">Chat</a>
           </li>
         </ul>
-      </div>
+      </div> */}
 
       <div className="row">
         <div className="landing-copy col s12 center-align">
