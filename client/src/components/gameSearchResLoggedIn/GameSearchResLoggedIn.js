@@ -58,15 +58,6 @@ export default function GameSearchResLoggedIn(props) {
                   aria-controls={game.id + "-content"}
                   id={game.id + "-header"}
                 >
-                  <Fab
-                    size="small"
-                    color="secondary"
-                    aria-label="add"
-                    className={classes.margin}
-                  >
-                    <AddIcon style={{ align: "right" }} />
-                  </Fab>
-
                   <Typography className={classes.heading}>
                     <img
                       src={game.background_image}
@@ -97,6 +88,15 @@ export default function GameSearchResLoggedIn(props) {
                     <span className="col s4 game-heading">
                       {game.platforms.map((p) => `${p.platform.name} | `)}
                     </span>
+
+                    <Fab
+                      size="small"
+                      color="secondary"
+                      aria-label="add"
+                      className={classes.margin}
+                    >
+                      <AddIcon style={{ align: "right" }} />
+                    </Fab>
                   </Typography>
                 </AccordionDetails>
               </Accordion>

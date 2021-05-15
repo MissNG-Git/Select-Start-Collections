@@ -13,6 +13,7 @@ import Browse from "./components/browse/Browse";
 import GameDetail from "./components/gameDetail/GameDetail";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
+import SearchDatabase from "./components/searchDatabase/SearchDatabase";
 import Collection from "./components/collection/Collection";
 import GameDetailLoggedIn from "./components/gameDetailLoggedIn/GameDetailLoggedIn";
 import ChatStore from "./components/chat/ChatStore";
@@ -54,11 +55,12 @@ function App() {
           <Route path="/browse/:name" component={GameDetail} />
           <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            <PrivateRoute exact path="/collection" component={Collection} />
+            <PrivateRoute exact path="/searchDB" component={SearchDatabase} />
             <PrivateRoute
-              path="/collection/:name"
+              path="/searchDB/:name"
               component={GameDetailLoggedIn}
             />
+            <PrivateRoute exact path="/collection" component={Collection} />
             <ChatStore>
               <PrivateRoute exact path="/chat" component={Chat}></PrivateRoute>
             </ChatStore>

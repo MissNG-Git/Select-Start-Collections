@@ -11,7 +11,13 @@ export const SidebarLinks = [
     cName: "nav-text",
   },
   {
-    title: "Collection",
+    title: "Search the Database",
+    path: "/searchDB",
+    icon: <FaIcons.FaDatabase />,
+    cName: "nav-text",
+  },
+  {
+    title: "Collection Manager",
     path: "/collection",
     icon: <IoIcons.IoIosPaper />,
     cName: "nav-text",
