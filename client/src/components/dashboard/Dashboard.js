@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { logoutUser } from "../../actions/authActions";
 import Sidebar from "../layout/Sidebar";
 import Charts from "../charts/Charts";
 // import ssc from "../../ssc.svg";
@@ -9,11 +8,6 @@ import Charts from "../charts/Charts";
 function Dashboard(props) {
   console.log(props);
   const { user } = props.auth;
-
-  const onLogoutClick = (e) => {
-    e.preventDefault();
-    props.logoutUser();
-  };
 
   return (
     <div>
@@ -50,19 +44,6 @@ function Dashboard(props) {
               </p>
             </h4>
 
-            <button
-              style={{
-                width: "150px",
-                borderRadius: "3px",
-                letterSpacing: "1.5px",
-                marginTop: "1rem",
-              }}
-              onClick={onLogoutClick}
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-            >
-              Logout
-            </button>
-
             <Charts />
           </div>
         </div>
@@ -73,7 +54,6 @@ function Dashboard(props) {
 
 // Define PropType Validators
 Dashboard.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
 };
 
@@ -83,4 +63,4 @@ const mapStateToProps = (state) => ({
 });
 
 // Utilise redux connect() to link w/component & display form errors
-export default connect(mapStateToProps, { logoutUser })(Dashboard);
+export default connect(mapStateToProps)(Dashboard);
