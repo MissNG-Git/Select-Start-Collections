@@ -47,7 +47,7 @@ export default function GameSearchResults(props) {
           <div className={classes.root}>
             {props.gameSearchResults.map((game) => (
               <Accordion
-                // ! Need unique "key" prop
+                key={game.id}
                 expanded={expanded === `${game.id}`}
                 onChange={handleChange(`${game.id}`)}
               >
