@@ -1,4 +1,6 @@
 import axios from "axios";
+// const rawgApi = "https://rawg.io/api/games?search=";
+// const apiKey = process.env.REACT_APP_RAWG_KEY;
 
 export const saveGame = (gameData) => {
   axios
