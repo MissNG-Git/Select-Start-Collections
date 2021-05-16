@@ -6,7 +6,7 @@ export default function Database() {
   const [searchTerm, setSearchTerm] = useState("");
   const [gameSearchResults, setGameSearchResults] = useState([]);
   const gameSearchAPI = "https://rawg.io/api/games?search=";
-  const apiKey = "key=ecb17b4d180847d69d89a8bccf741a5d";
+  const apiKey = process.env.REACT_APP_RAWG_KEY;
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);

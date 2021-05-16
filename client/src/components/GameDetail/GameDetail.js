@@ -30,12 +30,11 @@ const GameDetail = (props) => {
         <div className="col s12 center-align">
           <div className="details-wrapper">
             <h2 className="game-title">{game.name}</h2>
-            <p className="game-meta">Released: {game.released}</p>
+            <p className=" game-meta">Released: {game.released}</p>
             <p className="game-meta">MetaCritic: {game.metacritic}</p>
             {/* <p className="game-meta">User Rating: {game.rating}</p> */}
             <p className="game-meta">
-              Ratings:
-              {game.ratings.map((r) => `${r.title} ${r.percent}% | `)}
+              Ratings: {game.ratings.map((r) => `${r.title} ${r.percent}% | `)}
             </p>
             <h4 className="game-heading">Genre(s):</h4>
             {game.genres.map((g) => `${g.name} | `)}
@@ -44,16 +43,24 @@ const GameDetail = (props) => {
             {game.platforms.map((p) => `${p.platform.name} | `)}
 
             <ul className="game-details-ul">
+              <h4 className="game-heading">Screenshot(s):</h4>
               {game.short_screenshots.map((ss) => (
-                <li key={ss.id} className="game-details-li">
+                <li
+                  key={ss.id}
+                  className="game-details-li"
+                  style={{
+                    display: "inline-block",
+                  }}
+                >
                   <img
                     src={ss.image}
                     alt="game screenshot"
                     className="game-screenshot"
                     style={{
-                      display: "inline-block",
                       width: "25vh",
                       height: "25vh",
+                      padding: "5px",
+                      float: "left",
                       objectFit: "cover",
                     }}
                   ></img>
