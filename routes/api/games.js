@@ -5,6 +5,23 @@ const router = express.Router();
 // Load Game model
 const Game = require("../../models/Game");
 
+const gameSearchAPI = "https://rawg.io/api/games?search=";
+const apiKey = process.env.REACT_APP_RAWG_KEY;
+
+router.get("/browse", (req, res) => {
+  res.json(json);
+});
+
+router.get("/browse/:search", async (req, res) => {
+  console.log(req.params);
+  const searchTerm = req.params.search.split(" ").join("-").toLowerCase();
+  console.log(searchTerm);
+  const api_url = gameSearchAPI + searchTerm + apiKey;
+  const fetch_res = await fetch(api_url);
+  const json = await fetch_res.json();
+  res.json(json);
+});
+
 // Collection GET endpoint
 router.get("/collection", (req, res) => {
   console.log("Collect GET!", req.body);

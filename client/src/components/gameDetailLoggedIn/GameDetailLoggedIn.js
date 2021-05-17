@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../layout/Sidebar";
-import { saveGame } from "../../utils/game-api";
+import gameApi from "../../utils/gameApi";
 
 const GameDetailLoggedIn = (props) => {
   console.log(props);
@@ -22,7 +22,7 @@ const GameDetailLoggedIn = (props) => {
       purchasePrice: parseInt(game.score).toFixed(2),
     };
     console.log(game);
-    saveGame(savedGame);
+    gameApi.saveGame(savedGame);
     //   .then((res) => {
     //     console.log(res);
     //   })
@@ -39,7 +39,16 @@ const GameDetailLoggedIn = (props) => {
           <div className="col s12 center-align">
             <div className="details-wrapper">
               <h1 className="game-title">{game.name}</h1>
-              <button onClick={addToCollection}>Add to Collection</button>
+              <button
+                style={{
+                  width: "140px",
+                  borderRadius: "15px",
+                  letterSpacing: "1.5px",
+                }}
+                onClick={addToCollection}
+              >
+                Add to Collection
+              </button>
 
               <p className="game-meta">Released: {game.released}</p>
               <p className="game-meta">MetaCritic: {game.metacritic}</p>
