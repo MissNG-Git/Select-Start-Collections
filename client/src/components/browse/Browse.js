@@ -18,7 +18,7 @@ export default function Database() {
 
     setGameSearchResults([]);
     fetch(`${gameSearchAPI}${slug}&${apiKey}`)
-      .then((res) => res.json(console.log(res)))
+      .then((res) => res.json(res))
       .then(({ results }) => {
         results === undefined
           ? alert("no games found")
