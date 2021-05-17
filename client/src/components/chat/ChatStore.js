@@ -6,15 +6,15 @@ export const CTX = createContext();
 
 // initState to confirm what works in layout
 const initState = {
-  general: [
-    { from: "test", msg: "hi" },
-    { from: "user", msg: "hey" },
-    { from: "bob", msg: "yo" },
+  General: [
+    { from: "Jim", msg: "hi" },
+    { from: "Bob", msg: "hey" },
+    { from: "Boo", msg: "yo" },
   ],
-  topic2: [
-    { from: "bob", msg: "bye" },
-    { from: "user", msg: "later" },
-    { from: "test", msg: "peace" },
+  Topic2: [
+    { from: "Bob", msg: "bye" },
+    { from: "Boo", msg: "later" },
+    { from: "Jim", msg: "peace" },
   ],
 };
 

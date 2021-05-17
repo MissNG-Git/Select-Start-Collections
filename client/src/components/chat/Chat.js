@@ -73,7 +73,13 @@ function Chat() {
             <div className={classes.chatWindow}>
               {allChats[activeTopic].map((chat, i) => (
                 <div className={classes.flex} key={i}>
-                  <Chip label={chat.from} className={classes.chip} />
+                  <Chip
+                    label={chat.from}
+                    className={classes.chip}
+                    style={{
+                      margin: "0px 15px 5px 0px",
+                    }}
+                  />
                   <Typography variant="inherit">{chat.msg}</Typography>
                 </div>
               ))}
