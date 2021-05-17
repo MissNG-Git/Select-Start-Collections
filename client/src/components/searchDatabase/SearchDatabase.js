@@ -5,8 +5,9 @@ import GameSearchResLoggedIn from "../gameSearchResLoggedIn/GameSearchResLoggedI
 export default function SearchDatabase() {
   const [searchTerm, setSearchTerm] = useState("");
   const [gameSearchResults, setGameSearchResults] = useState([]);
-  const gameSearchAPI = "https://rawg.io/api/games?search=";
-  const apiKey = process.env.REACT_APP_RAWG_KEY;
+  const localHost = "http://localhost:8000/api/games";
+  // const gameSearchAPI = "https://rawg.io/api/games?search=";
+  // const apiKey = process.env.REACT_APP_RAWG_KEY;
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -17,7 +18,7 @@ export default function SearchDatabase() {
     let slug = searchTerm.split(" ").join("-").toLowerCase();
 
     setGameSearchResults([]);
-    fetch(`${gameSearchAPI}${slug}&${apiKey}`)
+    fetch(`${localHost}/searchDB?` + new URLSearchParams({ slug }))
       .then((res) => res.json(console.log(res)))
       .then(({ results }) => {
         results === undefined

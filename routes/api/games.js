@@ -12,7 +12,7 @@ const apiKey = process.env.REACT_APP_RAWG_KEY;
 // `${gameSearchAPI}${slug}&${apiKey}`;
 
 router.get("/browse", (req, res) => {
-  console.log(req);
+  console.log("browse for...", req.query.slug);
   axios({
     method: "get",
     url: gameSearchAPI,
@@ -20,28 +20,26 @@ router.get("/browse", (req, res) => {
       search: req.query.slug,
       key: apiKey,
     },
-  }).then((data) => {
-    res.send(data.data);
-  });
-});
-
-router.get("/browse/:search", async (req, res) => {
-  console.log(req.params);
-  const searchTerm = req.params.search.split(" ").join("-").toLowerCase();
-  console.log(searchTerm);
-  const api_url = gameSearchAPI + searchTerm + apiKey;
-  const fetch_res = await fetch(api_url);
-  const json = await fetch_res.json();
-  res.json(json);
+  })
+    .then((data) => {
+      res.send(data.data);
+    })
+    .catch((err) => res.status(422).json(err));
 });
 
 // Collection GET endpoint
-router.get("/collection", (req, res) => {
-  console.log("Collect GET!", req.body);
-
-  Game.find({ title: req.body.title })
-    .then((game) => {
-      res.json(game);
+router.get("/searchDB", (req, res) => {
+  console.log("searchDB for...", req.query.slug);
+  axios({
+    method: "get",
+    url: gameSearchAPI,
+    params: {
+      search: req.query.slug,
+      key: apiKey,
+    },
+  })
+    .then((data) => {
+      res.send(data.data);
     })
     .catch((err) => res.status(422).json(err));
 });
