@@ -1,7 +1,9 @@
 // Import Dependencies
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
+const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 8000;
 const users = require("./routes/api/users");
@@ -17,6 +19,7 @@ if (process.env.NODE_ENV === "production") {
 // Use Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 // Passport Middleware
 app.use(passport.initialize());
@@ -40,8 +43,6 @@ mongoose
   )
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
-
-require("dotenv").config();
 
 // ! Socket.io testing
 // app.get("/", function (req, res) {

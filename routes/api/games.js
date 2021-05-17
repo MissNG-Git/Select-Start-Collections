@@ -1,15 +1,28 @@
 // Import dependencies
 const express = require("express");
 const router = express.Router();
+const axios = require("axios");
 
 // Load Game model
 const Game = require("../../models/Game");
 
-const gameSearchAPI = "https://rawg.io/api/games?search=";
+const gameSearchAPI = "https://rawg.io/api/games";
 const apiKey = process.env.REACT_APP_RAWG_KEY;
 
+// `${gameSearchAPI}${slug}&${apiKey}`;
+
 router.get("/browse", (req, res) => {
-  res.json(json);
+  // console.log(req);
+  axios({
+    method: "get",
+    url: gameSearchAPI,
+    params: {
+      search: req.query.slug,
+      key: apiKey,
+    },
+  }).then((data) => {
+    res.send(data.data);
+  });
 });
 
 router.get("/browse/:search", async (req, res) => {

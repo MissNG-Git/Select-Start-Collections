@@ -5,8 +5,8 @@ import GameSearchResults from "../gameSearchResults/GameSearchResults";
 export default function Database() {
   const [searchTerm, setSearchTerm] = useState("");
   const [gameSearchResults, setGameSearchResults] = useState([]);
-  const gameSearchAPI = "https://rawg.io/api/games?search=";
-  const apiKey = process.env.REACT_APP_RAWG_KEY;
+  // const gameSearchAPI = "https://rawg.io/api/games?search=";
+  // const apiKey = process.env.REACT_APP_RAWG_KEY;
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -17,8 +17,10 @@ export default function Database() {
     let slug = searchTerm.split(" ").join("-").toLowerCase();
 
     setGameSearchResults([]);
-    fetch(`${gameSearchAPI}${slug}&${apiKey}`)
-      .then((res) => res.json(res))
+    fetch(
+      "http://localhost:8000/api/games/browse?" + new URLSearchParams({ slug })
+    )
+      .then((res) => res.json(console.log(res)))
       .then(({ results }) => {
         results === undefined
           ? alert("no games found")
