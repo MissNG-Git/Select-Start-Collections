@@ -7,9 +7,9 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  // Fab,
+  Fab,
 } from "@material-ui/core";
-// import AddIcon from "@material-ui/icons/Add";
+import AddIcon from "@material-ui/icons/Add";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +42,15 @@ export default function GameSearchResLoggedIn(props) {
   };
 
   console.log(props);
+
+  const addToCollection = (e) => {
+    e.preventDefault();
+    console.log("Add me!", props.GameSearchResults);
+    // Get selected game (by key???)
+
+    // Save new Game per Game model to database
+    // const newGame = {};
+  };
 
   return (
     <div style={{ height: "75vh" }} className="search-results-div container">
@@ -76,7 +85,7 @@ export default function GameSearchResLoggedIn(props) {
                 </AccordionSummary>
                 <AccordionDetails>
                   <span className="col s1 game-heading">
-                    {/* <Fab
+                    <Fab
                       size="small"
                       color="secondary"
                       aria-label="add"
@@ -84,7 +93,7 @@ export default function GameSearchResLoggedIn(props) {
                       onClick={addToCollection}
                     >
                       <AddIcon style={{ align: "right" }} />
-                    </Fab> */}
+                    </Fab>
                   </span>
 
                   <Typography className={classes.details}>

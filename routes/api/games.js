@@ -11,6 +11,7 @@ const apiKey = process.env.REACT_APP_RAWG_KEY;
 
 // `${gameSearchAPI}${slug}&${apiKey}`;
 
+// Browse GET endpoint
 router.get("/browse", (req, res) => {
   console.log("browse for...", req.query.slug);
   axios({
@@ -27,7 +28,7 @@ router.get("/browse", (req, res) => {
     .catch((err) => res.status(422).json(err));
 });
 
-// Collection GET endpoint
+// SearchDB GET endpoint
 router.get("/searchDB", (req, res) => {
   console.log("searchDB for...", req.query.slug);
   axios({
@@ -44,54 +45,52 @@ router.get("/searchDB", (req, res) => {
     .catch((err) => res.status(422).json(err));
 });
 
-// Collection POST endpoint
-router.post("/collection", (req, res) => {
-  console.log("Collect POST!", req.body);
-
-  Game.create(req.body)
-    .then((game) => {
-      res.json(game);
-    })
-    .catch((err) => res.status(422).json(err));
-  //   Game.findOne({
-  //     title: req.body.title,
+router.post("/searchDB", (req, res) => {
+  console.log("POST to searchDB...", req);
+  // Game.findOne({
+  //   title: req.body.title,
+  // })
+  //   .then((game) => {
+  //     if (!game) {
+  //       return res.status(400).json({ email: "Game could not be found :(" });
+  //     } else {
+  //       const newGame = new Game({
+  //         title: req.body.title,
+  //         releaseDate: req.body.release,
+  //         genre: req.body.genre,
+  //         platform: req.body.platform,
+  //         synopsis: req.body.synopsis,
+  //         developer: req.body.developer,
+  //         publisher: req.body.publisher,
+  //         price: req.body.price,
+  //       });
+  //     }
   //   })
-  //     .then((game) => {
-  //       if (!game) {
-  //         return res.status(400).json({ email: "Game could not be found :(" });
-  //       } else {
-  //         const newGame = new Game({
-  //           title: req.body.title,
-  //           releaseDate: req.body.release,
-  //           genre: req.body.genre,
-  //           platform: req.body.platform,
-  //           synopsis: req.body.synopsis,
-  //           developer: req.body.developer,
-  //           publisher: req.body.publisher,
-  //           price: req.body.price,
-  //         });
-  //       }
-  //     })
-  //     .catch((err) => res.status(422).json(err));
+  //   .catch((err) => res.status(422).json(err));
+});
+
+// Collection POST endpoint
+router.get("/collection", (req, res) => {
+  console.log("Collect GET!", req.body);
 });
 
 // Collection PUT(?) endpoint
-// router.put("/collection/:id", (req, res) => {
-//   console.log("Collect EDIT", req.params);
+router.put("/collection/:id", (req, res) => {
+  console.log("Collect EDIT", req.params);
 
-//   Game.findById({ _id: req.params.id })
-//     .then((game) => res.json(game))
-//     .catch((err) => res.status(422).json(err));
-// });
+  // Game.findById({ _id: req.params.id })
+  //   .then((game) => res.json(game))
+  //   .catch((err) => res.status(422).json(err));
+});
 
 // Collection DELETE(?) endpoint
-// router.delete("/collection/:id", (req, res) => {
-//   console.log("Collect REMOVE", req.params);
+router.delete("/collection/:id", (req, res) => {
+  console.log("Collect REMOVE", req.params);
 
-//   Game.findById({ _id: req.params.id })
-//     .then((game) => game.remove())
-//     .then((game) => res.json(game))
-//     .catch((err) => res.status(422).json(err));
-// });
+  // Game.findById({ _id: req.params.id })
+  //   .then((game) => game.remove())
+  //   .then((game) => res.json(game))
+  //   .catch((err) => res.status(422).json(err));
+});
 
 module.exports = router;
