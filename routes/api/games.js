@@ -12,7 +12,7 @@ const apiKey = process.env.REACT_APP_RAWG_KEY;
 // `${gameSearchAPI}${slug}&${apiKey}`;
 
 router.get("/browse", (req, res) => {
-  // console.log(req);
+  console.log(req);
   axios({
     method: "get",
     url: gameSearchAPI,
