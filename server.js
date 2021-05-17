@@ -10,6 +10,10 @@ const games = require("./routes/api/games");
 // const http = require("http").createServer(app);
 // const io = require("socket.io")(http);
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 // Use Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
