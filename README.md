@@ -24,8 +24,7 @@ Technologies utilized include...
 - [GitBash](https://gitforwindows.org/)
 - [Heroku Platform](https://www.heroku.com/)
 
-To view a copy of our Presentation, please **[CLICK HERE](https://drive.google.com/file/d/1SX0fRjXyh-2yob8YqI9chvvgaJUit4gm/view?usp=sharing)**!
-_(available in .pdf & .pptx)_
+To view a copy of my Presentation, please **[CLICK HERE](https://drive.google.com/file/d/1SX0fRjXyh-2yob8YqI9chvvgaJUit4gm/view?usp=sharing)**!
 
 ## ≫ ──── ≪•◦ OBJECTIVES ◦•≫ ──── ≪
 
