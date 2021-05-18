@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const cors = require("cors");
 const app = express();
+const router = express.Router();
 const port = process.env.PORT || 8000;
 const users = require("./routes/api/users");
 const games = require("./routes/api/games");
