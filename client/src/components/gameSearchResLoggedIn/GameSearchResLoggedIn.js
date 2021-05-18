@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { saveGame } from "../../utils/gamApi";
+import API from "../../utils/gameApi";
 import {
   Typography,
   makeStyles,
@@ -43,9 +43,9 @@ export default function GameSearchResLoggedIn(props) {
 
   console.log(props);
 
-  const addToCollection = (e) => {
-    e.preventDefault();
-    console.log("Add me!", props.GameSearchResults);
+  const addToCollection = (game) => {
+    console.log(game);
+    API.saveGame(game);
     // Get selected game (by key???)
 
     // Save new Game per Game model to database
@@ -90,7 +90,7 @@ export default function GameSearchResLoggedIn(props) {
                       color="secondary"
                       aria-label="add"
                       className={classes.margin}
-                      onClick={addToCollection}
+                      onClick={() => addToCollection(game)}
                     >
                       <AddIcon style={{ align: "right" }} />
                     </Fab>

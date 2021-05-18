@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../layout/Sidebar";
 import { makeStyles, Fab } from "@material-ui/core";
 import RemoveIcon from "@material-ui/icons/Remove";
+import API from "../../utils/gameApi";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -11,9 +12,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Collection() {
   const classes = useStyles();
+  const [games, setGames] = useState([]);
 
   // Get games database data
-
+  useEffect(() => {
+    // console.log(API);
+    API.getGame().then((gamesData) => {
+      console.log(gamesData);
+      setGames(gamesData.data);
+    });
+  }, []);
   // Display data on table
 
   return (
@@ -40,41 +48,41 @@ export default function Collection() {
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <td>
-                      <Fab
-                        size="small"
-                        color="secondary"
-                        aria-label="remove"
-                        className={classes.margin}
-                        // onClick={deleteFromCollection}
-                      >
-                        <RemoveIcon style={{ align: "center" }} />
-                      </Fab>
-                    </td>
-                    <td>
-                      <img
-                        src="https://media.rawg.io/media/games/062/062420d85c7143f72ad3557f32c41ead.jpg"
-                        alt="Game cover"
-                        className="game-screenshot"
-                        style={{
-                          width: "10vh",
-                          height: "10vh",
-                          padding: "5px",
-                          float: "left",
-                          objectFit: "cover",
-                        }}
-                      ></img>
-                    </td>
-                    <td>Destiny</td>
-                    <td>2014-09-09</td>
-                    <td>Shooter | Action |</td>
-                    <td>
-                      Xbox One | PlayStation 4 | Xbox 360 | PlayStation 3 |
-                    </td>
-                    <td>$59.99</td>
-                    <td>2020-04-27</td>
-                  </tr>
+                  {games?.map((game) => (
+                    <tr>
+                      <td>
+                        <Fab
+                          size="small"
+                          color="secondary"
+                          aria-label="remove"
+                          className={classes.margin}
+                          // onClick={deleteFromCollection}
+                        >
+                          <RemoveIcon style={{ align: "center" }} />
+                        </Fab>
+                      </td>
+                      <td>
+                        <img
+                          src={game.photo}
+                          alt="Game cover"
+                          className="game-screenshot"
+                          style={{
+                            width: "10vh",
+                            height: "10vh",
+                            padding: "5px",
+                            float: "left",
+                            objectFit: "cover",
+                          }}
+                        ></img>
+                      </td>
+                      <td>{game.title}</td>
+                      <td>{game.releaseDate}</td>
+                      <td>{game.genre}</td>
+                      <td>{game.platform}</td>
+                      <td>{game.purchasePrice}</td>
+                      <td>{game.dateAdded}</td>
+                    </tr>
+                  ))}
                   <tr>
                     <td>
                       <Fab

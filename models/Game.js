@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 // Create GameSchema
 const GameSchema = new Schema({
   photo: { type: String },
-  title: { type: String, required: true },
+  title: { type: String },
   releaseDate: { type: Date },
   genre: [{ id: Number, name: String, slug: String }],
   platform: [{ id: Number, name: String, slug: String }],
@@ -13,8 +13,8 @@ const GameSchema = new Schema({
   //   developer: { type: String },
   //   publisher: { type: String },
   purchasePrice: { type: Number },
-  dateAdded: { type: Date, default: Date.now, required: true },
+  dateAdded: { type: Date, default: Date.now },
 });
 
 // Export the model
-module.exports = GameGame = mongoose.model("games", GameSchema);
+module.exports = Game = mongoose.model("games", GameSchema);
