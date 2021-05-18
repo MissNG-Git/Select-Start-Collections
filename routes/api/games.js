@@ -5,6 +5,7 @@ const axios = require("axios");
 
 // Load Game model
 const Game = require("../../models/Game");
+const User = require("../../models/User");
 
 const gameSearchAPI = "https://rawg.io/api/games";
 const apiKey = process.env.REACT_APP_RAWG_KEY;
@@ -45,8 +46,39 @@ router.get("/searchDB", (req, res) => {
     .catch((err) => res.status(422).json(err));
 });
 
+router.get("/saved", (req, res) => {
+  User.findOne({
+    _id: "60a3271d674fa54b885fc188",
+  })
+    .aggregate("games")
+    .exec()
+    .then((data) => {
+      console.log(data);
+      res.json(data.games);
+    })
+    .catch((err) => res.json(err));
+});
+
 router.post("/searchDB", (req, res) => {
-  console.log("POST to searchDB...", req);
+  // console.log("POST to searchDB...", req.body);
+
+  Game.create({
+    photo: req.body.background_image,
+    title: req.body.name,
+    releaseDate: req.body.released,
+    genre: req.body.genres,
+    platform: req.body.platforms,
+    purchasePrice: req.body.score,
+  })
+    .then((newGame) => {
+      console.log(newGame);
+      return User.updateOne(
+        { _id: "60a3271d674fa54b885fc188" },
+        { $addToSet: { games: newGame._id } }
+      );
+    })
+    .then((data) => res.json(data))
+    .catch((err) => res.status(422).json(err));
   // Game.findOne({
   //   title: req.body.title,
   // })

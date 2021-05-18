@@ -5,9 +5,7 @@ import axios from "axios";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getGame: () => {
-    axios.get("api/games/browse").then((res) => {
-      console.log(res);
-    });
+    return axios.get("api/games/saved");
   },
   saveGame: (gameData) => {
     axios
