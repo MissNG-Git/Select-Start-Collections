@@ -6,7 +6,7 @@ export default function Database() {
   const [searchTerm, setSearchTerm] = useState("");
   const [gameSearchResults, setGameSearchResults] = useState([]);
   const localHost = window.location.hostname.includes("localhost")
-    ? "http://localhost:8000/api/games"
+    ? "http://localhost:8000"
     : "";
   // const gameSearchAPI = "https://rawg.io/api/games?search=";
   // const apiKey = process.env.REACT_APP_RAWG_KEY;
@@ -20,7 +20,7 @@ export default function Database() {
     let slug = searchTerm.split(" ").join("-").toLowerCase();
 
     setGameSearchResults([]);
-    fetch(`${localHost}/browse?` + new URLSearchParams({ slug }))
+    fetch(`${localHost}/api/games/browse?` + new URLSearchParams({ slug }))
       .then((res) => res.json(console.log(res)))
       .then(({ results }) => {
         results === undefined
