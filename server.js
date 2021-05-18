@@ -32,6 +32,10 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 app.use("/api/games", games);
+router.use(function (req, res) {
+  console.log("no route hit");
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 // Connect to MongoDB
 mongoose
