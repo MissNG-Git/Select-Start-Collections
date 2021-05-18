@@ -21,7 +21,7 @@ export default function Database() {
 
     setGameSearchResults([]);
     fetch(`${localHost}/api/games/browse?` + new URLSearchParams({ slug }))
-      .then((res) => res.json(console.log(res)))
+      .then((res) => res.json(res))
       .then(({ results }) => {
         results === undefined
           ? alert("no games found")
