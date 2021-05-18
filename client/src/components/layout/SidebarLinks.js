@@ -25,7 +25,7 @@ export const SidebarLinks = [
   {
     title: "Chat",
     path: "/chat",
-    icon: <FaIcons.FaCartPlus />,
+    icon: <FaIcons.FaRocketchat />,
     cName: "nav-text",
   },
 ];

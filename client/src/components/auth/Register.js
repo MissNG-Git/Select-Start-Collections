@@ -14,7 +14,6 @@ function Register(props) {
   const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
-  console.log(props);
 
   useEffect(() => {
     // If isAuth = true, redirect to dashboard

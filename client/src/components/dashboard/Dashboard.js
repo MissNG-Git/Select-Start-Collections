@@ -6,7 +6,6 @@ import Charts from "../charts/Charts";
 // import ssc from "../../ssc.svg";
 
 function Dashboard(props) {
-  console.log(props);
   const { user } = props.auth;
 
   return (

@@ -154,7 +154,7 @@ export default function Charts() {
 
   return (
     <div className="charts-wrapper">
-      <h4>CHARTS TEST!</h4>
+      <h4>Your Collection at a Glance</h4>
       <Container className="charts-container">
         <Row className="charts-row">
           <Bar data={valueChartData} options={valueChartOptions} />

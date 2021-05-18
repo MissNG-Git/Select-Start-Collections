@@ -41,13 +41,11 @@ export default function GameSearchResLoggedIn(props) {
     setExpanded(isExpanded ? panel : false);
   };
 
-  console.log(props);
+  // console.log(props);
 
-  const addToCollection = (e) => {
-    e.preventDefault();
-    console.log("Add me!", props.GameSearchResults);
+  const addToCollection = (game) => {
+    // console.log(game);
     // Get selected game (by key???)
-
     // Save new Game per Game model to database
     // const newGame = {};
   };
@@ -90,7 +88,7 @@ export default function GameSearchResLoggedIn(props) {
                       color="secondary"
                       aria-label="add"
                       className={classes.margin}
-                      onClick={addToCollection}
+                      onClick={() => addToCollection(game)}
                     >
                       <AddIcon style={{ align: "right" }} />
                     </Fab>

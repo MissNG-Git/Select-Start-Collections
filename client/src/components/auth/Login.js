@@ -12,7 +12,6 @@ function Login(props) {
   const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
-  console.log(props);
 
   useEffect(() => {
     // If isAuth = true, redirect to dashboard
@@ -33,7 +32,7 @@ function Login(props) {
       email: email,
       password: password,
     };
-    console.log(userData);
+    // console.log(userData);
     dispatch(loginUser(userData));
   };
 

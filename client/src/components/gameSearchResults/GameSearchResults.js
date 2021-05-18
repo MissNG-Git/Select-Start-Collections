@@ -38,8 +38,6 @@ export default function GameSearchResults(props) {
     setExpanded(isExpanded ? panel : false);
   };
 
-  console.log(props);
-
   return (
     <div style={{ height: "75vh" }} className="search-results-div container">
       <div className="row">

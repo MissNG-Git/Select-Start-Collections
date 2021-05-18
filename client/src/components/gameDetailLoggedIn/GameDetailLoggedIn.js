@@ -3,7 +3,7 @@ import Sidebar from "../layout/Sidebar";
 import gameApi from "../../utils/gameApi";
 
 const GameDetailLoggedIn = (props) => {
-  console.log(props);
+  // console.log(props);
   const { game } = props.location.gameProps;
 
   const addToCollection = () => {
@@ -21,7 +21,7 @@ const GameDetailLoggedIn = (props) => {
       // publisher: ,
       purchasePrice: parseInt(game.score).toFixed(2),
     };
-    console.log(game);
+    // console.log(game);
     gameApi.saveGame(savedGame);
     //   .then((res) => {
     //     console.log(res);

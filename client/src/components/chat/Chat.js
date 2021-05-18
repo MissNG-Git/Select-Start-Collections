@@ -34,7 +34,7 @@ function Chat() {
 
   // CTX Store: get allChats & trigger reducer event
   const [allChats] = useContext(CTX);
-  console.log(allChats);
+  // console.log(allChats);
   // Get list of Objects
   const topics = Object.keys(allChats);
 
